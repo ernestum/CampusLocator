@@ -23,8 +23,12 @@ class EasyWICDInterface():
     
     def __init__(self):
         #mainly dbus initialisation that we do not understand
+        # accessing SystemBus() where systemwide demons are listening (for exampel wicd ;-) )
         bus = dbus.SystemBus()
         try:
+        # Do. there is no trying.
+
+            #accessing the Interface-object via dbus
             self.wireless = dbus.Interface(bus.get_object('org.wicd.daemon', '/org/wicd/daemon/wireless'),
                     'org.wicd.daemon.wireless')
             
