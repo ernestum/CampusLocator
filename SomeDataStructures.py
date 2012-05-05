@@ -48,14 +48,24 @@ class Cell:
 #
         
 class WlanScan(dict):
+    '''This Class represents a scan of the wlan networks.
+    It is just a dictionary that maps mac adresses to signal qualitys.
+    That is all the information we need. Anything else is just a gimmick
+    to be added later for impored user experience.'''
 
     def distanceTo(self, otherWlanScan):
+        '''computes the distance between two WlanScans:
+        It uses something like an euclidean distance. The dimension of the room
+        is adapted to the mac adresses in the two WlanScans to be compared.
+        We do not take the square root to increase performance.
+        '''
         distance = 0
         for cell in set(self).union(otherWlanScan):
             distance = distance + abs(self.getSignalStrength(cell) - otherWlanScan.getSignalStrength(cell))**2
         return distance
             
     def getSignalStrength(self, mac):
+        '''Returns the signal strength for a given mac adress'''
         if (mac in self): 
             return self[mac]
         else:
@@ -77,12 +87,17 @@ class Room():
         self.wlanScans.append(scan)
         
     def distanceTo(self, wlanScan):
+        '''computes the distance from a given WlanScan to this Room.
+        That works by computing the distance to all WlanScans associated with this 
+        Room and then choosing the smallest one.'''
+        
         distances = []
         for scan in self.wlanScans:
             distances.append(wlanScan.distanceTo(scan))
         return min(distances)
     
 if __name__ == '__main__':
+    #Just some boring testing code here!
     mgr = CellManager()
     mgr.addCell(Cell("c1"))
     mgr.addCell(Cell("c2"))
