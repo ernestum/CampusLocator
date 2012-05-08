@@ -44,7 +44,7 @@ class Cell:
     
         
 #
-#    !!! Here the interesting classes start. Ignore the boring stuff above
+#    !!! Here the interesting classes start. Ignore the boring stuff above. No Pun intended!
 #
         
 class WlanScan(dict):

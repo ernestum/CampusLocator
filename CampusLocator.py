@@ -3,6 +3,7 @@ import subprocess
 
 # Invoking iwlist for scanning networks
 # You would possibly want to change the device name
+# TODO
 scanData=subprocess.check_output(["iwlist","wlan0","scan"],shell=False)
 # just for testing purposes
 #print scanData
@@ -41,7 +42,9 @@ scanCells = scanData.split("Cell")
 # accessing each cell
 for cell in scanCells :
     print cell
-    #cell = cell.split("\n")
-    # for lines in
-#print scanData[1]
+    lines = cell.split("\n")
+    for line in lines :
+        # line matches "01 - Address: <MAC>"
+        if(line
 
+        # line matches ESSID:"<essid>"
