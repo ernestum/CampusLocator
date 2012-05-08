@@ -27,7 +27,8 @@ while True:
         minDistance = actualRoom.distanceTo(wlanScan)
         closestRoom = actualRoom
         for room in roomList:
-            d = room.distanceTo(wlanScan)
+            d = roomList[room].distanceTo(wlanScan)
+            print "Abstand zu " + str(room) + " " + str(d)
             if(d < minDistance):
                 minDistance = d
                 closestRoom = room
